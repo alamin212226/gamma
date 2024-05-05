@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GAMMA X LOGIN</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f3f3;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            margin: 0;
+            padding: 0;
+            font-size: 24px;
+            color: #ffcc00;
+            font-weight: bold;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 16px;
+            color: #007bff;
+            margin-bottom: 20px; /* added margin bottom */
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 40px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+            text-align: center;
+        }
+        /* Centering GAMMA LOGIN */
+        .gamma-login {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        /* MAIN PAGE STYLES */
+        #mainPage {
+            display: none;
+        }
+        #mainPage h2 {
+            font-size: 24px;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+        #mainPage p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        #mainPage #signalMessage {
+            font-size: 18px;
+            color: green;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>GAMMA X FUTURE SIGNAL GENERATOR</h1>
+    </div>
+    <div class="container">
+        <form id="loginForm">
+            <div class="gamma-login">
+                <h2>GAMMA LOGIN</h2>
+            </div>
+            <div class="form-group">
+                <label for="gammaID">Gamma ID:</label>
+                <input type="text" id="gammaID" name="gammaID" placeholder="Enter Gamma ID...">
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter Password...">
+            </div>
+            <input type="submit" value="Login">
+            <div id="errorMessage" class="error-message"></div>
+        </form>
+    </div>
+    <div class="footer">
+        Telegram-@gammaxadmin
+    </div>
+
+    <!-- MAIN PAGE CONTENT -->
+    <div id="mainPage" class="container">
+        <h2>GAMMA X FUTURE SIGNAL GENERATOR</h2>
+        <p>Choose Your Broker to Connect:</p>
+        <select id="brokerSelect">
+            <option value="quotex">Quotex</option>
+            <option value="binomo">Binomo</option>
+            <option value="iqoption">IQ Option</option>
+        </select>
+        <input type="button" value="Connect with Broker" onclick="connectBroker()" id="connectBrokerButton">
+        <p id="signalMessage"></p>
+    </div>
+
+    <script>
+        // Function to handle form submission
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent default form submission
+            
+            // Get input values
+            var gammaID = document.getElementById("gammaID").value;
+            var password = document.getElementById("password").value;
+            
+            // Check if credentials are valid
+            if (gammaID === "namirahqueen@gmail.com" && password === "Namirah26") {
+                // If credentials are valid, show the main page
+                document.getElementById("loginForm").style.display = "none";
+                document.getElementById("mainPage").style.display = "block";
+            } else {
+                // If credentials are invalid, display an error message
+                document.getElementById("errorMessage").innerText = "To Get GammaID And Password Contact @gammaxadmin";
+            }
+        });
+
+        // Function to handle broker connection
+        function connectBroker() {
+            var brokerSelect = document.getElementById("brokerSelect").value;
+            var signalMessage = document.getElementById("signalMessage");
+
+            signalMessage.textContent = "Loading...";
+            setTimeout(function() {
+                if (brokerSelect === "binomo" || brokerSelect === "iqoption") {
+                    signalMessage.textContent = "We are working on it.";
+                } else {
+                    signalMessage.textContent = "Connecting to " + brokerSelect.toUpperCase() + "...";
+                    setTimeout(function() {
+                        signalMessage.innerHTML = '<span class="green">Connected with ' + brokerSelect.toUpperCase() + ' Successfully</span>';
+                    }, 5000); // Wait for 5 seconds
+                }
+            }, 0); // No initial delay
+        }
+    </script>
+</body>
+</html>
